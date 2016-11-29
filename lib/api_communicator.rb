@@ -47,7 +47,7 @@ def get_character_movies_from_api(character)
       end 
     end
   end
-
+  return nil
 end
 
 
@@ -55,14 +55,17 @@ end
 
 def parse_character_movies(films_hash)
   # some iteration magic and puts out the movies in a nice list
-  films_hash.each do |film|
-    puts "Film Title: #{film["title"]}"
-    puts "     Episode: #{film["episode_id"]}"
-    puts "     Director: #{film["director"]}"
-    puts "     Producer: #{film["producer"]}"
-    puts "     Release Date: #{film["release_date"]}"
-    puts "Opening Crawl: #{film["opening_crawl"]}"
-    puts "---------------------------------------------"
+  if films_hash != nil
+    films_hash.each do |film|
+      # puts film
+      puts "Film Title: #{film["title"]}"
+      puts "     Episode: #{film["episode_id"]}"
+      puts "     Director: #{film["director"]}"
+      puts "     Producer: #{film["producer"]}"
+      puts "     Release Date: #{film["release_date"]}"
+      puts "Opening Crawl: #{film["opening_crawl"]}"
+      puts "---------------------------------------------"
+    end
   end
 end
 
