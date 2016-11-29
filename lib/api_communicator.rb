@@ -7,7 +7,6 @@ require 'pry'
 films_hash = {}
 
 
-
 def get_movies_from_api(films)
   films.collect do |url|
     all_films = RestClient.get(url)
@@ -28,7 +27,6 @@ def get_character_movies_from_api(character)
   #  for that film
   # return value of this method should be collection of info about each film.
   #  i.e. an array of hashes in which each hash reps a given film
-
   # this collection will be the argument given to `parse_character_movies`
   #  and that method will do some nice presentation stuff: puts out a list
   #  of movies by title. play around with puts out other info about a given film.
@@ -50,9 +48,26 @@ end
 
 
 
+
+films_hash = get_character_movies_from_api("Luke Skywalker")
+# this code would take array of hashes of film info and stick it into variable "films_hash"
+puts films_hash.length
+
+
 def parse_character_movies(films_hash)
   # some iteration magic and puts out the movies in a nice list
+  films_hash.collect do |key, value|
+    puts films_hash.length
+    binding.pry
+  end
 end
+
+
+
+
+parse_character_movies(films_hash)
+
+
 
 def show_character_movies(character)
   films_hash = get_character_movies_from_api(character)
