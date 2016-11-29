@@ -15,7 +15,6 @@ def get_movies_from_api(films)
 end 
 
 
-
 def get_character_movies_from_api(character)
   #make the web request
   all_characters = RestClient.get('http://www.swapi.co/api/people/')
@@ -35,8 +34,7 @@ def get_character_movies_from_api(character)
     if key == "results"
       value.each do |traits|
         if traits["name"].upcase == character.upcase
-          films_hash = get_movies_from_api(traits["films"])
-          films_hash
+          return get_movies_from_api(traits["films"])
         end
       end 
     end 
@@ -47,26 +45,18 @@ end
 
 
 
-
-
-films_hash = get_character_movies_from_api("Luke Skywalker")
-# this code would take array of hashes of film info and stick it into variable "films_hash"
-puts films_hash.length
-
-
 def parse_character_movies(films_hash)
   # some iteration magic and puts out the movies in a nice list
-  films_hash.collect do |key, value|
-    puts films_hash.length
-    binding.pry
+  films_hash.each do |film|
+    puts "Film Title: #{film["title"]}"
+    puts "     Episode: #{film["episode_id"]}"
+    puts "     Director: #{film["director"]}"
+    puts "     Producer: #{film["producer"]}"
+    puts "     Release Date: #{film["release_date"]}"
+    puts "Opening Crawl: #{film["opening_crawl"]}"
+    puts "---------------------------------------------"
   end
 end
-
-
-
-
-parse_character_movies(films_hash)
-
 
 
 def show_character_movies(character)
